@@ -13,7 +13,7 @@ const Books = ({ books }) => {
     .filter((b) => b.dateRead.getFullYear().toString() === year)
     .map((book, i) => (
       <BookItems
-        // key={i}
+        key={i}
         title={book.title}
         dateRead={book.dateRead}
         author={book.author}
