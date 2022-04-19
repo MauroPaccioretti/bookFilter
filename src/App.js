@@ -2,8 +2,6 @@ import "./App.css";
 
 import Books from "./components/books/Books";
 import NewBook from "./components/books/new-book/NewBook";
-import BooksFilter from "./components/filter/BooksFilter";
-import { useState } from "react";
 
 const App = () => {
   const books = [
@@ -34,22 +32,13 @@ const App = () => {
   ];
 
   const bookAddedHandler = (bookData) => {};
-  const filterChangeHandler = (year) => {
-    console.log(year);
-    return year;
-  };
-  const [year, setYear] = useState("2021");
-  const setYearHandler = (algo) => {
-    setYear(algo);
-  };
 
   return (
     <div>
       <h2>Books Champion App</h2>
       <p>Leer libros</p>
       <NewBook onBookAdded={bookAddedHandler} />
-      {/* <BooksFilter yearSetted={year} onFilterChanged={filterChangeHandler} /> */}
-      <Books books={books} year={filterChangeHandler} filtro={setYearHandler} />
+      <Books books={books} />
     </div>
   );
 };

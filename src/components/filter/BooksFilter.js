@@ -3,6 +3,7 @@ import { useState } from "react";
 
 const BooksFilter = ({ onFilterChanged, yearSetted }) => {
   const [year, setYear] = useState(yearSetted);
+
   const onYearChangeHandler = (e) => {
     onFilterChanged(e.target.value);
     setYear(e.target.value);
