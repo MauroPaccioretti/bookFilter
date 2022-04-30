@@ -23,24 +23,31 @@ const BookForm = ({ onBookDataSaved }) => {
     setReadDate(event.target.value);
   };
 
+  const clearForm = () => {
+    setTitle("");
+    setAuthor("");
+    setPageCount("");
+    setReadDate("");
+  };
   const submitHandler = (event) => {
     event.preventDefault();
     const bookData = {
       title,
       author,
       pageCount,
-      dateRead: new Date(readDate).toISOString(),
+      dateRead: new Date(readDate),
     };
-
-    // console.log(bookData);
     onBookDataSaved(bookData);
-    setTitle("");
-    setAuthor("");
-    setPageCount("");
-    setReadDate("");
+    clearForm();
   };
 
-  return (
+  const [showForm, setShowForm] = useState(false);
+  const showFormHandler = (e) => {
+    e.preventDefault();
+    setShowForm(!showForm);
+  };
+
+  return showForm ? (
     <form onSubmit={submitHandler}>
       <div className="new-book-controls">
         <div className="new-book-control">
@@ -74,8 +81,16 @@ const BookForm = ({ onBookDataSaved }) => {
       </div>
       <div className="new-book-actions">
         <button type="submit">Agregar lectura</button>
+        <button type="reset" onClick={clearForm}>
+          Limpiar formulario
+        </button>
+        <button type="button" onClick={showFormHandler}>
+          Cancelar
+        </button>
       </div>
     </form>
+  ) : (
+    <button onClick={showFormHandler}>Agregar Libro</button>
   );
 };
 
